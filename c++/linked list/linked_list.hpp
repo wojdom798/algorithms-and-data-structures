@@ -3,7 +3,7 @@
 
 #include "node.hpp"
 #include <iostream>
-using namespace std;
+#include <string>
 
 template <class T>
 class LinkedList {
@@ -18,7 +18,7 @@ class LinkedList {
     ~LinkedList();
     int length(void);
     void add(T item);
-    void print(void);
+    std::string toString(void);
 };
 
 template <class T>
@@ -67,19 +67,21 @@ void LinkedList<T>::add(T item) {
 }
 
 template <class T>
-void LinkedList<T>::print(void) {
+std::string LinkedList<T>::toString(void) {
+  std::string s = "[ ";
   Node<T>* tmp = this->head;
   int i = 1;
-  cout << "[ ";
   while (tmp != NULL) {
-    cout << tmp->getData();
+    s += std::to_string(tmp->getData());
     if (i < this->size) {
-      cout << ", ";
+      s += ", ";
     }
     tmp = tmp->getNext();
     i++;
   }
-  cout << " ]" << endl;
+  s += " ]";
+  return s;
 }
+
 
 #endif
